@@ -142,4 +142,23 @@ public class Filme {
         }
     }
 
+    public void alteraFilme(ArrayList<Filme> filmes, Filme filme){
+        Scanner scanner = new Scanner(System.in);
+
+        for (Filme f : filmes) {
+            if (f.codigo == filme.codigo){
+                System.out.println("\nInforme o ano de lançamento do filme:");
+                f.setAno_de_lancamento(Integer.parseInt(scanner.nextLine()));
+                System.out.println("\nInforme o nome do filme:");
+                f.setNome(scanner.nextLine());
+                System.out.println("\nInforme o nome do diretor filme:");
+                f.setDiretor(scanner.nextLine());
+                System.out.println("\nInforme o nome ator principal do filme:");
+                f.setAtor(scanner.nextLine());
+                System.out.println("\n ### Filme alterado com sucesso ###\n");
+                break;
+            }
+        }
+    }
+
 }

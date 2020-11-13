@@ -15,7 +15,7 @@ public class Main {
 
         ArrayList<Filme> filmes;
 
-        /*USAR PARA CARREGAR UMA LISTA DE FILMES PRÉ CADASTRADOS*/
+        /*CARREGA UMA LISTA DE FILMES PRÉ CADASTRADOS*/
         filmes = filme.carregaFilmes();
 
         opMenu = menu.menuPrincipal();
@@ -43,6 +43,11 @@ public class Main {
 
                         case 3:
                             filmes = filme.incluirFilme(filmes);
+                            break;
+
+                        case 4:
+                            f = filme.buscarFilme(filmes);
+                            filme.alteraFilme(filmes, f);
                             break;
 
                         case 5:

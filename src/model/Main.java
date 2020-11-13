@@ -2,12 +2,14 @@ package model;
 
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
         Menu menu = new Menu();
         Filme filme = new Filme();
+        Filme f;
 
         int opMenu, opSubmenuFilmes = 0, opSubmenuSalas = 0;
 
@@ -25,24 +27,42 @@ public class Main {
                     opSubmenuSalas=0;
                     switch (opSubmenuFilmes){
                         case 1:
-                            for(Filme f : filmes){
-                                System.out.println(f.toString());
+                            for(Filme i : filmes){
+                                System.out.println(i.toString());
                             }
                             break;
 
                         case 2:
-                            Filme f = new Filme();
                             f = filme.buscarFilme(filmes);
                             if (f != null){
                                 System.out.println(f.toString());
                             } else {
-                                System.out.println("\n ### Filme não encontrado ### ");
+                                System.out.println("\n### Filme não encontrado ### \n");
                             }
                             break;
 
                         case 3:
                             filmes = filme.incluirFilme(filmes);
                             break;
+
+                        case 5:
+                            Scanner scanner = new Scanner(System.in);
+                            String confirma;
+                            f = filme.buscarFilme(filmes);
+                            if (f != null){
+                                System.out.println(f.toString());
+                                System.out.println("\nConfirma exclusão? (s/n)");
+                                confirma = scanner.nextLine();
+                                if(confirma.equals("s") || confirma.equals("S")){
+                                    filme.deletaFilme(filmes,f.getCodigo());
+                                } else {
+                                    System.out.println("\n### Operação Cancelada ### \n");
+                                }
+                            } else {
+                                System.out.println("\n### Filme não encontrado ### \n");
+                            }
+                            break;
+
                     }
                     break;
 

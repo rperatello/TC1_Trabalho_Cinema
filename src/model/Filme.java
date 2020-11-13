@@ -132,4 +132,14 @@ public class Filme {
             return null;
     }
 
+    public void deletaFilme(ArrayList<Filme> filmes, int codigo){
+        for (Filme f : filmes) {
+            if (f.codigo == codigo){
+                filmes.remove(f);
+                System.out.println("\n ### Filme deletado com sucesso ###\n");
+                break;
+            }
+        }
+    }
+
 }

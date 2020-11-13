@@ -117,4 +117,19 @@ public class Filme {
 
         return carregaArrayFilmes;
     }
+
+    public Filme buscarFilme(ArrayList<Filme> filmes){
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("\nInforme o códiogo do filme:");
+        codigo = Integer.parseInt(scanner.nextLine());
+
+        for (Filme f : filmes) {
+            if (f.codigo == codigo){
+                return f;
+            }
+        }
+            return null;
+    }
+
 }

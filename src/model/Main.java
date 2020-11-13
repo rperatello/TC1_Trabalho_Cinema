@@ -1,6 +1,5 @@
 package model;
 
-import util.CarregarDados;
 
 import java.util.ArrayList;
 
@@ -28,6 +27,16 @@ public class Main {
                         case 1:
                             for(Filme f : filmes){
                                 System.out.println(f.toString());
+                            }
+                            break;
+
+                        case 2:
+                            Filme f = new Filme();
+                            f = filme.buscarFilme(filmes);
+                            if (f != null){
+                                System.out.println(f.toString());
+                            } else {
+                                System.out.println("\n ### Filme não encontrado ### ");
                             }
                             break;
 

@@ -9,14 +9,17 @@ public class Main {
     public static void main(String[] args) {
         Menu menu = new Menu();
         Filme filme = new Filme();
+        Sala sala = new Sala();
         Filme f;
+        Sala s;
 
         int opMenu, opSubmenuFilmes = 0, opSubmenuSalas = 0;
 
-        ArrayList<Filme> filmes;
-
         /*CARREGA UMA LISTA DE FILMES PRÉ CADASTRADOS*/
-        filmes = filme.carregaFilmes();
+        ArrayList<Filme> filmes = filme.carregaFilmes();
+
+        /*CAREEGA UMA LISTA DE SALAS PRÉ CADASTRADAS*/
+        ArrayList<Sala> salas = sala.carregaSalas();
 
         opMenu = menu.menuPrincipal();
 
@@ -74,6 +77,50 @@ public class Main {
                 case 2:
                     opSubmenuSalas = menu.submenuSalas();
                     opSubmenuFilmes =0;
+
+                    switch (opSubmenuSalas) {
+                        case 1:
+                            for (Sala i : salas) {
+                                System.out.println(i.toString());
+                            }
+                            break;
+
+                        case 2:
+                            s = sala.buscarSala(salas);
+                            if (s != null){
+                                System.out.println(s.toString());
+                            } else {
+                                System.out.println("\n### Sala não encontrada ### \n");
+                            }
+                            break;
+
+                        case 3:
+                            salas = sala.incluirSala(salas);
+                            break;
+
+                        case 4:
+                            s = sala.buscarSala(salas);
+                            sala.alterarSala(salas, s);
+                            break;
+
+                        case 5:
+                            Scanner scanner = new Scanner(System.in);
+                            String confirma;
+                            s = sala.buscarSala(salas);
+                            if (s != null){
+                                System.out.println(s.toString());
+                                System.out.println("\nConfirma exclusão? (s/n)");
+                                confirma = scanner.nextLine();
+                                if(confirma.equals("s") || confirma.equals("S")){
+                                    sala.deletaSala(salas,s.getCodigo());
+                                } else {
+                                    System.out.println("\n### Operação Cancelada ### \n");
+                                }
+                            } else {
+                                System.out.println("\n### Filme não encontrado ### \n");
+                            }
+                            break;
+                    }
                     break;
             }
             opMenu = menu.menuPrincipal();

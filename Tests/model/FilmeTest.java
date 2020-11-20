@@ -13,10 +13,16 @@ import static org.junit.jupiter.api.Assertions.*;
 class FilmeTest {
 
     private static Filme f;
+    public static ArrayList<Filme> listaFilmes;
+
 
     @BeforeAll
     public static void criaObjeto(){
         f = new Filme();
+    }
+    public static void criaArrayList(){
+        listaFilmes = new ArrayList<>();
+
     }
 
     @ParameterizedTest
@@ -79,12 +85,14 @@ class FilmeTest {
         assertArrayEquals(filmes.toArray(), filmesPadrao.toArray());
     }
 
-    @Test
-    void testCarregaFilmes() {
-        ArrayList<Filme> filmes = new ArrayList<>();
+    @ParameterizedTest
+    @ValueSource(ints = {0,1,2,3,4,5,6})
+    @DisplayName("Testa Carrega filmes")
+    @Order(8)
+    void testCarregaFilmes(int posicao) {
         ArrayList<Filme> filmesPadrao = new ArrayList<>();
 
-        filmes = f.carregaFilmes(filmes);
+        listaFilmes = f.carregaFilmes(listaFilmes);
 
         filmesPadrao.add(new Filme(1,1999,"Matrix","Lilly Wachowski","Keanu Reeves"));
         filmesPadrao.add(new Filme(2,2014,"Guardiões da Galáxia","James Gunn","Chris Pratt"));
@@ -94,7 +102,16 @@ class FilmeTest {
         filmesPadrao.add(new Filme(6,1988,"Os Fantasmas se Divertem","Tim Burton","Alec Baldwin"));
         filmesPadrao.add(new Filme(7,1991,"A Família Addams","Barry Sonnenfeld","Anjelica Huston"));
 
-        assertArrayEquals(filmes.toArray(), filmesPadrao.toArray());
+        System.out.println(posicao);
+        System.out.println(listaFilmes.get(posicao).nome);
+        System.out.println(filmesPadrao.get(posicao).nome);
+        assertAll("Teste carregar Filmes",
+                () -> assertEquals(listaFilmes.get(posicao).codigo,filmesPadrao.get(posicao).codigo),
+                () -> assertEquals(listaFilmes.get(posicao).ano_de_lancamento,filmesPadrao.get(posicao).ano_de_lancamento),
+                () -> assertEquals(listaFilmes.get(posicao).nome,filmesPadrao.get(posicao).nome),
+                () -> assertEquals(listaFilmes.get(posicao).diretor,filmesPadrao.get(posicao).diretor),
+                () -> assertEquals(listaFilmes.get(posicao).ator,filmesPadrao.get(posicao).ator)
+        );
     }
 
     @Test
@@ -118,26 +135,49 @@ class FilmeTest {
         );
     }
 
-    @Test
-    void deletaFilme() {
-        ArrayList<Filme> filmes = new ArrayList<>();
+    @ParameterizedTest
+    @ValueSource(ints = {0,1,2,3,4,5})
+    @DisplayName("Teste deleta filme")
+    @Order(10)
+    void deletaFilme(int posicao) {
         ArrayList<Filme> filmesPadrao = new ArrayList<>();
 
-        filmes = f.carregaFilmes(filmes);
-        f.deletaFilme(filmes,5);
+        listaFilmes = f.carregaFilmes(listaFilmes);
+        f.deletaFilme(listaFilmes,5);
 
         filmesPadrao.add(new Filme(1,1999,"Matrix","Lilly Wachowski","Keanu Reeves"));
         filmesPadrao.add(new Filme(2,2014,"Guardiões da Galáxia","James Gunn","Chris Pratt"));
         filmesPadrao.add(new Filme(3,2018,"Hereditário","Ari Aster","Toni Collette"));
         filmesPadrao.add(new Filme(4,2019,"Midsommar: O Mal Não Espera a Noite","Ari Aster"," Florence Pugh"));
-        //filmesPadrao.add(new Filme(5,2017,"It: A Coisa","Andy Muschietti","Bill Skarsgård"));
         filmesPadrao.add(new Filme(6,1988,"Os Fantasmas se Divertem","Tim Burton","Alec Baldwin"));
         filmesPadrao.add(new Filme(7,1991,"A Família Addams","Barry Sonnenfeld","Anjelica Huston"));
 
-        assertArrayEquals(filmes.toArray(), filmesPadrao.toArray());
+        assertAll("Teste deleta Filmes",
+                () -> assertEquals(listaFilmes.get(posicao).codigo,filmesPadrao.get(posicao).codigo),
+                () -> assertEquals(listaFilmes.get(posicao).ano_de_lancamento,filmesPadrao.get(posicao).ano_de_lancamento),
+                () -> assertEquals(listaFilmes.get(posicao).nome,filmesPadrao.get(posicao).nome),
+                () -> assertEquals(listaFilmes.get(posicao).diretor,filmesPadrao.get(posicao).diretor),
+                () -> assertEquals(listaFilmes.get(posicao).ator,filmesPadrao.get(posicao).ator)
+        );
     }
 
     @Test
+    @DisplayName("Teste altera filme")
+    @Order(9)
     void alteraFilme() {
+        ArrayList<Filme> filmesPadrao = new ArrayList<>();
+        Filme newFilme = new Filme(5,1500,"Brasil","Índios","Pedro Alvares Cabral");
+
+        listaFilmes = f.carregaFilmes(listaFilmes);
+        f.alteraFilme(listaFilmes,newFilme);
+
+       assertAll("Teste altera Filmes",
+                () -> assertEquals(listaFilmes.get(4).codigo,newFilme.codigo),
+                () -> assertEquals(listaFilmes.get(4).ano_de_lancamento,newFilme.ano_de_lancamento),
+                () -> assertEquals(listaFilmes.get(4).nome,newFilme.nome),
+                () -> assertEquals(listaFilmes.get(4).diretor,newFilme.diretor),
+                () -> assertEquals(listaFilmes.get(4).ator,newFilme.ator)
+        );
+
     }
 }

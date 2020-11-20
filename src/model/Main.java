@@ -81,6 +81,15 @@ public class Main {
                             System.out.println("\nInforme o códiogo do filme:");
                             codigo = Integer.parseInt(scanner.nextLine());
                             f = filme.buscarFilme(filmes,codigo);
+                            System.out.println("\nInforme o ano de lançamento do filme:");
+                            f.setAno_de_lancamento(Integer.parseInt(scanner.nextLine()));
+                            System.out.println("\nInforme o nome do filme:");
+                            f.setNome(scanner.nextLine());
+                            System.out.println("\nInforme o nome do diretor filme:");
+                            f.setDiretor(scanner.nextLine());
+                            System.out.println("\nInforme o nome ator principal do filme:");
+                            f.setAtor(scanner.nextLine());
+                            System.out.println("\n ### Filme alterado com sucesso ###\n");
                             filme.alteraFilme(filmes, f);
                             break;
 
@@ -94,6 +103,7 @@ public class Main {
                                 confirma = scanner.nextLine();
                                 if(confirma.equals("s") || confirma.equals("S")){
                                     filme.deletaFilme(filmes,f.getCodigo());
+                                    System.out.println("\n ### Filme deletado com sucesso ###\n");
                                 } else {
                                     System.out.println("\n### Operação Cancelada ### \n");
                                 }

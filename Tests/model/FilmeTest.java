@@ -4,6 +4,8 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -56,14 +58,23 @@ class FilmeTest {
     @ParameterizedTest
     @ValueSource(strings = {"Roger", "Rogério","Mateus"})
     @DisplayName("Teste get/set de ator")
-    @Order(4)
+    @Order(5)
     void getAtor(String ator) {
         f.setAtor(ator);
         assertEquals(ator, f.getAtor());
     }
 
     @Test
-    void incluirFilme() {
+    void testIncluirFilme() {
+        ArrayList<Filme> filmes = new ArrayList<>();
+        ArrayList<Filme> filmesPadrao = new ArrayList<>();
+        Filme filme = new Filme(50,1500,"Brasil","Portugal","Pedro Cabral");
+
+        f.incluirFilme(filmes,filme);
+
+        filmesPadrao.add(filme);
+
+        assertArrayEquals(filmes.toArray(), filmesPadrao.toArray());
     }
 
     @Test

@@ -12,13 +12,14 @@ public class Main {
         Sala sala = new Sala();
         Filme f;
         Sala s;
+        ArrayList<Filme> filmes = new ArrayList<>();
 
         Scanner scanner = new Scanner(System.in);
 
         int opMenu, opSubmenuFilmes = 0, opSubmenuSalas = 0;
 
         /*CARREGA UMA LISTA DE FILMES PRÉ CADASTRADOS*/
-        ArrayList<Filme> filmes = filme.carregaFilmes();
+        filmes = filme.carregaFilmes(filmes);
 
         /*CAREEGA UMA LISTA DE SALAS PRÉ CADASTRADAS*/
         ArrayList<Sala> salas = sala.carregaSalas();

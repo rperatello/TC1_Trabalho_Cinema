@@ -7,6 +7,7 @@ public class Filme {
 
     public int codigo, ano_de_lancamento;
     public String nome, diretor, ator;
+    public ArrayList<Filme> filmes = new ArrayList<>();
 
     public Filme() {
     }
@@ -74,18 +75,17 @@ public class Filme {
         return filmes;
     }
 
-    public ArrayList<Filme> carregaFilmes(){
-        ArrayList carregaArrayFilmes = new ArrayList();
+    public ArrayList<Filme> carregaFilmes(ArrayList<Filme> filmes){
 
-        carregaArrayFilmes.add(new Filme(1,1999,"Matrix","Lilly Wachowski","Keanu Reeves"));
-        carregaArrayFilmes.add(new Filme(2,2014,"Guardiões da Galáxia","James Gunn","Chris Pratt"));
-        carregaArrayFilmes.add(new Filme(3,2018,"Hereditário","Ari Aster","Toni Collette"));
-        carregaArrayFilmes.add(new Filme(4,2019,"Midsommar: O Mal Não Espera a Noite","Ari Aster"," Florence Pugh"));
-        carregaArrayFilmes.add(new Filme(5,2017,"It: A Coisa","Andy Muschietti","Bill Skarsgård"));
-        carregaArrayFilmes.add(new Filme(6,1988,"Os Fantasmas se Divertem","Tim Burton","Alec Baldwin"));
-        carregaArrayFilmes.add(new Filme(7,1991,"A Família Addams","Barry Sonnenfeld","Anjelica Huston"));
+        this.filmes.add(new Filme(1,1999,"Matrix","Lilly Wachowski","Keanu Reeves"));
+        this.filmes.add(new Filme(2,2014,"Guardiões da Galáxia","James Gunn","Chris Pratt"));
+        this.filmes.add(new Filme(3,2018,"Hereditário","Ari Aster","Toni Collette"));
+        this.filmes.add(new Filme(4,2019,"Midsommar: O Mal Não Espera a Noite","Ari Aster"," Florence Pugh"));
+        this.filmes.add(new Filme(5,2017,"It: A Coisa","Andy Muschietti","Bill Skarsgård"));
+        this.filmes.add(new Filme(6,1988,"Os Fantasmas se Divertem","Tim Burton","Alec Baldwin"));
+        this.filmes.add(new Filme(7,1991,"A Família Addams","Barry Sonnenfeld","Anjelica Huston"));
 
-        return carregaArrayFilmes;
+        return this.filmes;
     }
 
     public Filme buscarFilme(ArrayList<Filme> filmes){

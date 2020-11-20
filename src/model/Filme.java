@@ -88,11 +88,10 @@ public class Filme {
         return this.filmes;
     }
 
-    public Filme buscarFilme(ArrayList<Filme> filmes){
+    public Filme buscarFilme(ArrayList<Filme> filmes, Integer codigo){
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("\nInforme o códiogo do filme:");
-        codigo = Integer.parseInt(scanner.nextLine());
+
 
         for (Filme f : filmes) {
             if (f.codigo == codigo){

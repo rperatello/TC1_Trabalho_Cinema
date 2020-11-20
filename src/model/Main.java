@@ -13,6 +13,9 @@ public class Main {
         Filme f;
         Sala s;
         ArrayList<Filme> filmes = new ArrayList<>();
+        int codigo, ano_de_lancamento;
+        String nome, diretor, ator, confirma;
+        boolean checkCodigo = true;
 
         Scanner scanner = new Scanner(System.in);
 
@@ -39,7 +42,9 @@ public class Main {
                             break;
 
                         case 2:
-                            f = filme.buscarFilme(filmes);
+                            System.out.println("\nInforme o códiogo do filme:");
+                            codigo = Integer.parseInt(scanner.nextLine());
+                            f = filme.buscarFilme(filmes,codigo);
                             if (f != null){
                                 System.out.println(f.toString());
                             } else {
@@ -48,13 +53,6 @@ public class Main {
                             break;
 
                         case 3:
-                            int codigo, ano_de_lancamento;
-                            String nome, diretor, ator;
-                            boolean checkCodigo = true;
-
-
-                            //Scanner scanner = new Scanner(System.in);
-
                             System.out.println("\nInforme o códiogo do filme:");
                             codigo = Integer.parseInt(scanner.nextLine());
                             for (Filme itemFilme : filmes){
@@ -80,14 +78,16 @@ public class Main {
                             break;
 
                         case 4:
-                            f = filme.buscarFilme(filmes);
+                            System.out.println("\nInforme o códiogo do filme:");
+                            codigo = Integer.parseInt(scanner.nextLine());
+                            f = filme.buscarFilme(filmes,codigo);
                             filme.alteraFilme(filmes, f);
                             break;
 
                         case 5:
-                            //Scanner scanner = new Scanner(System.in);
-                            String confirma;
-                            f = filme.buscarFilme(filmes);
+                            System.out.println("\nInforme o códiogo do filme:");
+                            codigo = Integer.parseInt(scanner.nextLine());
+                            f = filme.buscarFilme(filmes,codigo);
                             if (f != null){
                                 System.out.println(f.toString());
                                 System.out.println("\nConfirma exclusão? (s/n)");
@@ -135,8 +135,6 @@ public class Main {
                             break;
 
                         case 5:
-                            //Scanner scanner = new Scanner(System.in);
-                            String confirma;
                             s = sala.buscarSala(salas);
                             if (s != null){
                                 System.out.println(s.toString());

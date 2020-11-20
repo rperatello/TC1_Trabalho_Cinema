@@ -65,6 +65,8 @@ class FilmeTest {
     }
 
     @Test
+    @DisplayName("Teste inclusao de filmes")
+    @Order(6)
     void testIncluirFilme() {
         ArrayList<Filme> filmes = new ArrayList<>();
         ArrayList<Filme> filmesPadrao = new ArrayList<>();
@@ -96,11 +98,43 @@ class FilmeTest {
     }
 
     @Test
+    @DisplayName("Teste inclusao de filmes")
+    @Order(7)
     void buscarFilme() {
+
+        Filme filme2 = new Filme(5,2017,"It: A Coisa","Andy Muschietti","Bill Skarsgård");
+
+        ArrayList<Filme> filmes = new ArrayList<>();
+        filmes = f.carregaFilmes(filmes);
+
+        Filme filme1 = f.buscarFilme(filmes,5);
+
+        assertAll("Teste buscar Filmes",
+                () -> assertEquals(filme1.codigo,filme2.codigo),
+                () -> assertEquals(filme1.ano_de_lancamento,filme2.ano_de_lancamento),
+                () -> assertEquals(filme1.nome,filme2.nome),
+                () -> assertEquals(filme1.diretor,filme2.diretor),
+                () -> assertEquals(filme1.ator,filme2.ator)
+        );
     }
 
     @Test
     void deletaFilme() {
+        ArrayList<Filme> filmes = new ArrayList<>();
+        ArrayList<Filme> filmesPadrao = new ArrayList<>();
+
+        filmes = f.carregaFilmes(filmes);
+        f.deletaFilme(filmes,5);
+
+        filmesPadrao.add(new Filme(1,1999,"Matrix","Lilly Wachowski","Keanu Reeves"));
+        filmesPadrao.add(new Filme(2,2014,"Guardiões da Galáxia","James Gunn","Chris Pratt"));
+        filmesPadrao.add(new Filme(3,2018,"Hereditário","Ari Aster","Toni Collette"));
+        filmesPadrao.add(new Filme(4,2019,"Midsommar: O Mal Não Espera a Noite","Ari Aster"," Florence Pugh"));
+        //filmesPadrao.add(new Filme(5,2017,"It: A Coisa","Andy Muschietti","Bill Skarsgård"));
+        filmesPadrao.add(new Filme(6,1988,"Os Fantasmas se Divertem","Tim Burton","Alec Baldwin"));
+        filmesPadrao.add(new Filme(7,1991,"A Família Addams","Barry Sonnenfeld","Anjelica Huston"));
+
+        assertArrayEquals(filmes.toArray(), filmesPadrao.toArray());
     }
 
     @Test

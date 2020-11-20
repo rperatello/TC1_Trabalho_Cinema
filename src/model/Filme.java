@@ -5,8 +5,9 @@ import java.util.Scanner;
 
 public class Filme {
 
-    private int codigo, ano_de_lancamento;
-    private String nome, diretor, ator;
+    public int codigo, ano_de_lancamento;
+    public String nome, diretor, ator;
+    public ArrayList<Filme> filmes = new ArrayList<>();
 
     public Filme() {
     }
@@ -69,53 +70,22 @@ public class Filme {
                 "\n#######\n";
     }
 
-    public ArrayList<Filme> incluirFilme(ArrayList<Filme> filmes){
-        int codigo, ano_de_lancamento;
-        String nome, diretor, ator;
-        boolean checkCodigo = true;
-
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("\nInforme o códiogo do filme:");
-        codigo = Integer.parseInt(scanner.nextLine());
-        for (Filme f : filmes){
-            if (f.codigo == codigo){
-                System.out.println("Código já Cadastrado");
-                checkCodigo = false;
-                break;
-            }
-        }
-        if (checkCodigo == true) {
-            System.out.println("\nInforme o ano de lançamento do filme:");
-            ano_de_lancamento = Integer.parseInt(scanner.nextLine());
-            System.out.println("\nInforme o nome do filme:");
-            nome = scanner.nextLine();
-            System.out.println("\nInforme o nome do diretor filme:");
-            diretor = scanner.nextLine();
-            System.out.println("\nInforme o nome ator principal do filme:");
-            ator = scanner.nextLine();
-
-            Filme novoFilme = new Filme(codigo, ano_de_lancamento, nome, diretor, ator);
-            filmes.add(novoFilme);
-            System.out.println("\n ### Filme incluído com sucesso ### \n");
-        } else {
-            System.out.println("\n ### Filme não cadastrado ### \n");
-        }
+    public ArrayList<Filme> incluirFilme(ArrayList<Filme> filmes, Filme filme){
+        filmes.add(filme);
         return filmes;
     }
 
-    public ArrayList<Filme> carregaFilmes(){
-        ArrayList carregaArrayFilmes = new ArrayList();
+    public ArrayList<Filme> carregaFilmes(ArrayList<Filme> filmes){
 
-        carregaArrayFilmes.add(new Filme(1,1999,"Matrix","Lilly Wachowski","Keanu Reeves"));
-        carregaArrayFilmes.add(new Filme(2,2014,"Guardiões da Galáxia","James Gunn","Chris Pratt"));
-        carregaArrayFilmes.add(new Filme(3,2018,"Hereditário","Ari Aster","Toni Collette"));
-        carregaArrayFilmes.add(new Filme(4,2019,"Midsommar: O Mal Não Espera a Noite","Ari Aster"," Florence Pugh"));
-        carregaArrayFilmes.add(new Filme(5,2017,"It: A Coisa","Andy Muschietti","Bill Skarsgård"));
-        carregaArrayFilmes.add(new Filme(6,1988,"Os Fantasmas se Divertem","Tim Burton","Alec Baldwin"));
-        carregaArrayFilmes.add(new Filme(7,1991,"A Família Addams","Barry Sonnenfeld"," Anjelica Huston"));
+        this.filmes.add(new Filme(1,1999,"Matrix","Lilly Wachowski","Keanu Reeves"));
+        this.filmes.add(new Filme(2,2014,"Guardiões da Galáxia","James Gunn","Chris Pratt"));
+        this.filmes.add(new Filme(3,2018,"Hereditário","Ari Aster","Toni Collette"));
+        this.filmes.add(new Filme(4,2019,"Midsommar: O Mal Não Espera a Noite","Ari Aster"," Florence Pugh"));
+        this.filmes.add(new Filme(5,2017,"It: A Coisa","Andy Muschietti","Bill Skarsgård"));
+        this.filmes.add(new Filme(6,1988,"Os Fantasmas se Divertem","Tim Burton","Alec Baldwin"));
+        this.filmes.add(new Filme(7,1991,"A Família Addams","Barry Sonnenfeld","Anjelica Huston"));
 
-        return carregaArrayFilmes;
+        return this.filmes;
     }
 
     public Filme buscarFilme(ArrayList<Filme> filmes){

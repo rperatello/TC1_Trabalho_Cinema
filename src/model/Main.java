@@ -12,11 +12,14 @@ public class Main {
         Sala sala = new Sala();
         Filme f;
         Sala s;
+        ArrayList<Filme> filmes = new ArrayList<>();
+
+        Scanner scanner = new Scanner(System.in);
 
         int opMenu, opSubmenuFilmes = 0, opSubmenuSalas = 0;
 
         /*CARREGA UMA LISTA DE FILMES PRÉ CADASTRADOS*/
-        ArrayList<Filme> filmes = filme.carregaFilmes();
+        filmes = filme.carregaFilmes(filmes);
 
         /*CAREEGA UMA LISTA DE SALAS PRÉ CADASTRADAS*/
         ArrayList<Sala> salas = sala.carregaSalas();
@@ -45,7 +48,35 @@ public class Main {
                             break;
 
                         case 3:
-                            filmes = filme.incluirFilme(filmes);
+                            int codigo, ano_de_lancamento;
+                            String nome, diretor, ator;
+                            boolean checkCodigo = true;
+
+
+                            //Scanner scanner = new Scanner(System.in);
+
+                            System.out.println("\nInforme o códiogo do filme:");
+                            codigo = Integer.parseInt(scanner.nextLine());
+                            for (Filme itemFilme : filmes){
+                                if (itemFilme.codigo == codigo){
+                                    System.out.println("Código já Cadastrado");
+                                    checkCodigo = false;
+                                    break;
+                                }
+                            }
+                            if (checkCodigo == true) {
+                                System.out.println("\nInforme o ano de lançamento do filme:");
+                                ano_de_lancamento = Integer.parseInt(scanner.nextLine());
+                                System.out.println("\nInforme o nome do filme:");
+                                nome = scanner.nextLine();
+                                System.out.println("\nInforme o nome do diretor filme:");
+                                diretor = scanner.nextLine();
+                                System.out.println("\nInforme o nome ator principal do filme:");
+                                ator = scanner.nextLine();
+                                Filme novoFilme = new Filme(codigo, ano_de_lancamento, nome, diretor, ator);
+                                filmes = filme.incluirFilme(filmes, novoFilme);
+                            }
+
                             break;
 
                         case 4:
@@ -54,7 +85,7 @@ public class Main {
                             break;
 
                         case 5:
-                            Scanner scanner = new Scanner(System.in);
+                            //Scanner scanner = new Scanner(System.in);
                             String confirma;
                             f = filme.buscarFilme(filmes);
                             if (f != null){
@@ -104,7 +135,7 @@ public class Main {
                             break;
 
                         case 5:
-                            Scanner scanner = new Scanner(System.in);
+                            //Scanner scanner = new Scanner(System.in);
                             String confirma;
                             s = sala.buscarSala(salas);
                             if (s != null){

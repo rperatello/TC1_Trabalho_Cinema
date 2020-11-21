@@ -4,6 +4,8 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -11,10 +13,12 @@ import static org.junit.jupiter.api.Assertions.*;
 class SalaTest {
 
     private static Sala s;
+    public static ArrayList<Sala> listaSalas;
 
     @BeforeAll
     public static void criaObjeto(){
         s = new Sala();
+        listaSalas = new ArrayList<Sala>();
     }
 
     @ParameterizedTest
@@ -72,23 +76,114 @@ class SalaTest {
         assertEquals(b, s.isAcessivel());
     }
 
-    @Test
-    void carregaSalas() {
+    @ParameterizedTest
+    @ValueSource(ints = {0,1,2,3,4,5,6})
+    @DisplayName("Testa carrega salas")
+    @Order(8)
+    void carregaSalas(int posicao) {
+        listaSalas = s.carregaSalas(listaSalas);
+
+        ArrayList<Sala> salasPadrao = new ArrayList<>();
+
+        salasPadrao.add(new Sala(1,20,"Sala 1","2D","(16)3351-1010",true));
+        salasPadrao.add(new Sala(2,25,"Sala 2","2D","(16)3351-1020",true));
+        salasPadrao.add(new Sala(3,20,"Sala 3","2D","(16)3351-1030", false));
+        salasPadrao.add(new Sala(4,30,"Sala 4","3D","(16)3351-1040",true));
+        salasPadrao.add(new Sala(5,15,"Sala 5","3D","(16)3351-1050", false));
+        salasPadrao.add(new Sala(6,22,"Sala 6","2D","(16)3351-1060", true));
+        salasPadrao.add(new Sala(7,25,"Sala 7","3D","(16)3351-1070", false));
+
+        System.out.println(posicao);
+        System.out.println(listaSalas.get(posicao).getNome());
+        System.out.println(salasPadrao.get(posicao).getNome());
+        assertAll("Teste carregar salas",
+                () -> assertEquals(listaSalas.get(posicao).getCodigo(),salasPadrao.get(posicao).getCodigo()),
+                () -> assertEquals(listaSalas.get(posicao).getCapacidade(),salasPadrao.get(posicao).getCapacidade()),
+                () -> assertEquals(listaSalas.get(posicao).getNome(),salasPadrao.get(posicao).getNome()),
+                () -> assertEquals(listaSalas.get(posicao).getTipo_de_exibicao(),salasPadrao.get(posicao).getTipo_de_exibicao()),
+                () -> assertEquals(listaSalas.get(posicao).getTelefone_sala(),salasPadrao.get(posicao).getTelefone_sala()),
+                () -> assertEquals(listaSalas.get(posicao).isAcessivel(),salasPadrao.get(posicao).isAcessivel())
+        );
     }
 
     @Test
+    @DisplayName("Teste buscar sala")
+    @Order(9)
     void buscarSala() {
+        ArrayList<Sala> salas = new ArrayList<>();
+        Sala sala1 = new Sala(1,20,"Sala 1","2D","(16)3351-1010",true);
+
+        salas = s.carregaSalas(salas);
+        Sala sala2 = s.buscarSala(salas,1);
+
+        assertAll("Teste buscar Filmes",
+                () -> assertEquals(sala1.getCodigo(), sala2.getCodigo()),
+                () -> assertEquals(sala1.getCapacidade(), sala2.getCapacidade()),
+                () -> assertEquals(sala1.getNome(), sala2.getNome()),
+                () -> assertEquals(sala1.getTipo_de_exibicao(), sala2.getTipo_de_exibicao()),
+                () -> assertEquals(sala1.getTelefone_sala(), sala2.getTelefone_sala()),
+                () -> assertEquals(sala1.isAcessivel(), sala2.isAcessivel())
+        );
+    }
+
+    @ParameterizedTest
+    @DisplayName("Teste deletar sala")
+    @ValueSource(ints = {0,1,2,3,4,5})
+    @Order(10)
+    void deletaSala(int posicao) {
+        ArrayList<Sala> salasPadrao = new ArrayList<>();
+
+        listaSalas = s.carregaSalas(listaSalas);
+        listaSalas = s.deletaSala(listaSalas, 3);
+
+        salasPadrao.add(new Sala(1,20,"Sala 1","2D","(16)3351-1010",true));
+        salasPadrao.add(new Sala(2,25,"Sala 2","2D","(16)3351-1020",true));
+        salasPadrao.add(new Sala(4,30,"Sala 4","3D","(16)3351-1040",true));
+        salasPadrao.add(new Sala(5,15,"Sala 5","3D","(16)3351-1050", false));
+        salasPadrao.add(new Sala(6,22,"Sala 6","2D","(16)3351-1060", true));
+        salasPadrao.add(new Sala(7,25,"Sala 7","3D","(16)3351-1070", false));
+
+        assertAll("Teste deletar salas",
+                () -> assertEquals(listaSalas.get(posicao).getCodigo(),salasPadrao.get(posicao).getCodigo()),
+                () -> assertEquals(listaSalas.get(posicao).getCapacidade(),salasPadrao.get(posicao).getCapacidade()),
+                () -> assertEquals(listaSalas.get(posicao).getNome(),salasPadrao.get(posicao).getNome()),
+                () -> assertEquals(listaSalas.get(posicao).getTipo_de_exibicao(),salasPadrao.get(posicao).getTipo_de_exibicao()),
+                () -> assertEquals(listaSalas.get(posicao).getTelefone_sala(),salasPadrao.get(posicao).getTelefone_sala()),
+                () -> assertEquals(listaSalas.get(posicao).isAcessivel(),salasPadrao.get(posicao).isAcessivel())
+        );
     }
 
     @Test
-    void deletaSala() {
-    }
-
-    @Test
+    @DisplayName("Teste incluir sala")
+    @Order(7)
     void incluirSala() {
+        ArrayList<Sala> salas = new ArrayList<>();
+        ArrayList<Sala> salaPadrao = new ArrayList<>();
+        Sala s = new Sala(1,20,"Sala 1","2D","(16)3351-1010",true);
+
+        s.incluirSala(salas,s);
+        salaPadrao.add(s);
+
+        assertArrayEquals(salas.toArray(), salaPadrao.toArray());
     }
 
     @Test
+    @DisplayName("Teste alterar sala")
+    @Order(11)
     void alterarSala() {
+        ArrayList<Sala> salaPadrao = new ArrayList<>();
+        Sala newSala= new Sala(1,99,"Sala 1","3D","(16)3333-3333",false);
+
+        listaSalas = s.carregaSalas(listaSalas);
+        s.alterarSala(listaSalas,newSala);
+
+        assertAll("Teste alterar sala",
+                () -> assertEquals(listaSalas.get(0).getCodigo(),newSala.getCodigo()),
+                () -> assertEquals(listaSalas.get(0).getCapacidade(),newSala.getCapacidade()),
+                () -> assertEquals(listaSalas.get(0).getNome(),newSala.getNome()),
+                () -> assertEquals(listaSalas.get(0).getTipo_de_exibicao(),newSala.getTipo_de_exibicao()),
+                () -> assertEquals(listaSalas.get(0).getTelefone_sala(),newSala.getTelefone_sala()),
+                () -> assertEquals(listaSalas.get(0).isAcessivel(),newSala.isAcessivel())
+        );
     }
 }

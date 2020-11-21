@@ -89,10 +89,6 @@ public class Filme {
     }
 
     public Filme buscarFilme(ArrayList<Filme> filmes, Integer codigo){
-        Scanner scanner = new Scanner(System.in);
-
-
-
         for (Filme f : filmes) {
             if (f.codigo == codigo){
                 return f;
@@ -111,7 +107,6 @@ public class Filme {
     }
 
     public void alteraFilme(ArrayList<Filme> filmes, Filme filme){
-
         for (Filme f : filmes) {
             if (f.codigo == filme.codigo){
                 f.setNome(filme.nome);

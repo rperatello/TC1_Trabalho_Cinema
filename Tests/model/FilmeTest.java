@@ -79,7 +79,6 @@ class FilmeTest {
         Filme filme = new Filme(50,1500,"Brasil","Portugal","Pedro Cabral");
 
         f.incluirFilme(filmes,filme);
-
         filmesPadrao.add(filme);
 
         assertArrayEquals(filmes.toArray(), filmesPadrao.toArray());
@@ -87,7 +86,7 @@ class FilmeTest {
 
     @ParameterizedTest
     @ValueSource(ints = {0,1,2,3,4,5,6})
-    @DisplayName("Testa Carrega filmes")
+    @DisplayName("Testa carrega filmes")
     @Order(8)
     void testCarregaFilmes(int posicao) {
         ArrayList<Filme> filmesPadrao = new ArrayList<>();
@@ -115,7 +114,7 @@ class FilmeTest {
     }
 
     @Test
-    @DisplayName("Teste inclusao de filmes")
+    @DisplayName("Teste buscar filmes")
     @Order(7)
     void buscarFilme() {
 

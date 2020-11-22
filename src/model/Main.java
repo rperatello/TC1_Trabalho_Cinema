@@ -53,10 +53,11 @@ public class Main {
                             }
                             break;
                         case 3:
+                            checkCodigo = true;
                             System.out.println("\nInforme o código do filme:");
                             codigo = Integer.parseInt(scanner.nextLine());
                             for (Filme itemFilme : filmes){
-                                if (itemFilme.codigo == codigo){
+                                if (itemFilme.getCodigo() == codigo){
                                     System.out.println("Código já Cadastrado");
                                     checkCodigo = false;
                                     break;
@@ -82,13 +83,13 @@ public class Main {
                             if (f != null){
                                 System.out.println("\n*Informe os novos dados de filme*");
                                 System.out.println("\nInforme o ano de lançamento do filme:");
-                                f.ano_de_lancamento = Integer.parseInt(scanner.nextLine());
+                                f.setAno_de_lancamento(Integer.parseInt(scanner.nextLine()));
                                 System.out.println("\nInforme o nome do filme:");
-                                f.nome = scanner.nextLine();
+                                f.setNome(scanner.nextLine());
                                 System.out.println("\nInforme o nome do diretor filme:");
-                                f.diretor = scanner.nextLine();
+                                f.setDiretor(scanner.nextLine());
                                 System.out.println("\nInforme o nome ator principal do filme:");
-                                f.ator = scanner.nextLine();
+                                f.setAtor(scanner.nextLine());
                                 filme.alteraFilme(filmes, f);
                             } else {
                                 System.out.println("\n### Filme não encontrado ### \n");
@@ -136,6 +137,7 @@ public class Main {
                             }
                             break;
                         case 3:
+                            checkCodigo = true;
                             System.out.println("\nInforme o código da sala:");
                             codigo = Integer.parseInt(scanner.nextLine());
                             for (Sala item : salas){
@@ -160,7 +162,7 @@ public class Main {
                                 salas = sala.incluirSala(salas, novaSala);
                                 System.out.println("\n ### Sala cadastrada ### \n");
                             } else {
-                                System.out.println("\n ### Sala não cadastrada ### \n");
+                                System.out.println("\n ### Nova Sala não cadastrada ### \n");
                             }
                             break;
                         case 4:

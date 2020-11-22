@@ -102,14 +102,14 @@ class FilmeTest {
         filmesPadrao.add(new Filme(7,1991,"A Família Addams","Barry Sonnenfeld","Anjelica Huston"));
 
         System.out.println(posicao);
-        System.out.println(listaFilmes.get(posicao).nome);
-        System.out.println(filmesPadrao.get(posicao).nome);
+        System.out.println(listaFilmes.get(posicao).getNome());
+        System.out.println(filmesPadrao.get(posicao).getNome());
         assertAll("Teste carregar Filmes",
-                () -> assertEquals(listaFilmes.get(posicao).codigo,filmesPadrao.get(posicao).codigo),
-                () -> assertEquals(listaFilmes.get(posicao).ano_de_lancamento,filmesPadrao.get(posicao).ano_de_lancamento),
-                () -> assertEquals(listaFilmes.get(posicao).nome,filmesPadrao.get(posicao).nome),
-                () -> assertEquals(listaFilmes.get(posicao).diretor,filmesPadrao.get(posicao).diretor),
-                () -> assertEquals(listaFilmes.get(posicao).ator,filmesPadrao.get(posicao).ator)
+                () -> assertEquals(listaFilmes.get(posicao).getCodigo(),filmesPadrao.get(posicao).getCodigo()),
+                () -> assertEquals(listaFilmes.get(posicao).getAno_de_lancamento(),filmesPadrao.get(posicao).getAno_de_lancamento()),
+                () -> assertEquals(listaFilmes.get(posicao).getNome(),filmesPadrao.get(posicao).getNome()),
+                () -> assertEquals(listaFilmes.get(posicao).getDiretor(),filmesPadrao.get(posicao).getDiretor()),
+                () -> assertEquals(listaFilmes.get(posicao).getAtor(),filmesPadrao.get(posicao).getAtor())
         );
     }
 
@@ -126,11 +126,11 @@ class FilmeTest {
         Filme filme1 = f.buscarFilme(filmes,5);
 
         assertAll("Teste buscar Filmes",
-                () -> assertEquals(filme1.codigo,filme2.codigo),
-                () -> assertEquals(filme1.ano_de_lancamento,filme2.ano_de_lancamento),
-                () -> assertEquals(filme1.nome,filme2.nome),
-                () -> assertEquals(filme1.diretor,filme2.diretor),
-                () -> assertEquals(filme1.ator,filme2.ator)
+                () -> assertEquals(filme1.getCodigo(),filme2.getCodigo()),
+                () -> assertEquals(filme1.getAno_de_lancamento(),filme2.getAno_de_lancamento()),
+                () -> assertEquals(filme1.getNome(),filme2.getNome()),
+                () -> assertEquals(filme1.getDiretor(),filme2.getDiretor()),
+                () -> assertEquals(filme1.getAtor(),filme2.getAtor())
         );
     }
 
@@ -152,11 +152,11 @@ class FilmeTest {
         filmesPadrao.add(new Filme(7,1991,"A Família Addams","Barry Sonnenfeld","Anjelica Huston"));
 
         assertAll("Teste deleta Filmes",
-                () -> assertEquals(listaFilmes.get(posicao).codigo,filmesPadrao.get(posicao).codigo),
-                () -> assertEquals(listaFilmes.get(posicao).ano_de_lancamento,filmesPadrao.get(posicao).ano_de_lancamento),
-                () -> assertEquals(listaFilmes.get(posicao).nome,filmesPadrao.get(posicao).nome),
-                () -> assertEquals(listaFilmes.get(posicao).diretor,filmesPadrao.get(posicao).diretor),
-                () -> assertEquals(listaFilmes.get(posicao).ator,filmesPadrao.get(posicao).ator)
+                () -> assertEquals(listaFilmes.get(posicao).getCodigo(),filmesPadrao.get(posicao).getCodigo()),
+                () -> assertEquals(listaFilmes.get(posicao).getAno_de_lancamento(),filmesPadrao.get(posicao).getAno_de_lancamento()),
+                () -> assertEquals(listaFilmes.get(posicao).getNome(),filmesPadrao.get(posicao).getNome()),
+                () -> assertEquals(listaFilmes.get(posicao).getDiretor(),filmesPadrao.get(posicao).getDiretor()),
+                () -> assertEquals(listaFilmes.get(posicao).getAtor(),filmesPadrao.get(posicao).getAtor())
         );
     }
 
@@ -171,11 +171,11 @@ class FilmeTest {
         f.alteraFilme(listaFilmes,newFilme);
 
        assertAll("Teste altera Filmes",
-                () -> assertEquals(listaFilmes.get(4).codigo,newFilme.codigo),
-                () -> assertEquals(listaFilmes.get(4).ano_de_lancamento,newFilme.ano_de_lancamento),
-                () -> assertEquals(listaFilmes.get(4).nome,newFilme.nome),
-                () -> assertEquals(listaFilmes.get(4).diretor,newFilme.diretor),
-                () -> assertEquals(listaFilmes.get(4).ator,newFilme.ator)
+                () -> assertEquals(listaFilmes.get(4).getCodigo(),newFilme.getCodigo()),
+                () -> assertEquals(listaFilmes.get(4).getAno_de_lancamento(),newFilme.getAno_de_lancamento()),
+                () -> assertEquals(listaFilmes.get(4).getNome(),newFilme.getNome()),
+                () -> assertEquals(listaFilmes.get(4).getDiretor(),newFilme.getDiretor()),
+                () -> assertEquals(listaFilmes.get(4).getAtor(),newFilme.getAtor())
         );
 
     }

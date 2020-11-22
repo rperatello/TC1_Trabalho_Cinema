@@ -5,9 +5,9 @@ import java.util.Scanner;
 
 public class Filme {
 
-    public int codigo, ano_de_lancamento;
-    public String nome, diretor, ator;
-    public ArrayList<Filme> filmes = new ArrayList<>();
+    private int codigo, ano_de_lancamento;
+    private String nome, diretor, ator;
+    private ArrayList<Filme> filmes = new ArrayList<>();
 
     public Filme() {
     }

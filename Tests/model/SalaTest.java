@@ -59,12 +59,14 @@ class SalaTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"(16)3371-1111", "(16)3371-1112"})
+    @ValueSource(strings = {"1633711111"})
     @DisplayName("Teste get/set de telefone")
     @Order(5)
     void getTelefone_sala(String tel) {
         s.setTelefone_sala(tel);
-        assertEquals(tel, s.getTelefone_sala());
+        assertEquals("(16)3371-1111", s.getTelefone_sala());
+        s.setTelefone_sala("16997826643");
+        assertEquals("(16)99782-6643", s.getTelefone_sala());
     }
 
     @ParameterizedTest
@@ -85,13 +87,13 @@ class SalaTest {
 
         ArrayList<Sala> salasPadrao = new ArrayList<>();
 
-        salasPadrao.add(new Sala(1,20,"Sala 1","2D","(16)3351-1010",true));
-        salasPadrao.add(new Sala(2,25,"Sala 2","2D","(16)3351-1020",true));
-        salasPadrao.add(new Sala(3,20,"Sala 3","2D","(16)3351-1030", false));
-        salasPadrao.add(new Sala(4,30,"Sala 4","3D","(16)3351-1040",true));
-        salasPadrao.add(new Sala(5,15,"Sala 5","3D","(16)3351-1050", false));
-        salasPadrao.add(new Sala(6,22,"Sala 6","2D","(16)3351-1060", true));
-        salasPadrao.add(new Sala(7,25,"Sala 7","3D","(16)3351-1070", false));
+        salasPadrao.add(new Sala(1,20,"Sala 1","2D","1633511010",true));
+        salasPadrao.add(new Sala(2,25,"Sala 2","2D","1633511020",true));
+        salasPadrao.add(new Sala(3,20,"Sala 3","2D","1633511030", false));
+        salasPadrao.add(new Sala(4,30,"Sala 4","3D","1633511040",true));
+        salasPadrao.add(new Sala(5,15,"Sala 5","3D","1633511050", false));
+        salasPadrao.add(new Sala(6,22,"Sala 6","2D","1633511060", true));
+        salasPadrao.add(new Sala(7,25,"Sala 7","3D","1633511070", false));
 
         System.out.println(posicao);
         System.out.println(listaSalas.get(posicao).getNome());
@@ -111,7 +113,7 @@ class SalaTest {
     @Order(9)
     void buscarSala() {
         ArrayList<Sala> salas = new ArrayList<>();
-        Sala sala1 = new Sala(1,20,"Sala 1","2D","(16)3351-1010",true);
+        Sala sala1 = new Sala(1,20,"Sala 1","2D","1633511010",true);
 
         salas = s.carregaSalas(salas);
         Sala sala2 = s.buscarSala(salas,1);
@@ -136,12 +138,12 @@ class SalaTest {
         listaSalas = s.carregaSalas(listaSalas);
         listaSalas = s.deletaSala(listaSalas, 3);
 
-        salasPadrao.add(new Sala(1,20,"Sala 1","2D","(16)3351-1010",true));
-        salasPadrao.add(new Sala(2,25,"Sala 2","2D","(16)3351-1020",true));
-        salasPadrao.add(new Sala(4,30,"Sala 4","3D","(16)3351-1040",true));
-        salasPadrao.add(new Sala(5,15,"Sala 5","3D","(16)3351-1050", false));
-        salasPadrao.add(new Sala(6,22,"Sala 6","2D","(16)3351-1060", true));
-        salasPadrao.add(new Sala(7,25,"Sala 7","3D","(16)3351-1070", false));
+        salasPadrao.add(new Sala(1,20,"Sala 1","2D","1633511010",true));
+        salasPadrao.add(new Sala(2,25,"Sala 2","2D","1633511020",true));
+        salasPadrao.add(new Sala(4,30,"Sala 4","3D","1633511040",true));
+        salasPadrao.add(new Sala(5,15,"Sala 5","3D","1633511050", false));
+        salasPadrao.add(new Sala(6,22,"Sala 6","2D","1633511060", true));
+        salasPadrao.add(new Sala(7,25,"Sala 7","3D","1633511070", false));
 
         assertAll("Teste deletar salas",
                 () -> assertEquals(listaSalas.get(posicao).getCodigo(),salasPadrao.get(posicao).getCodigo()),
@@ -159,7 +161,7 @@ class SalaTest {
     void incluirSala() {
         ArrayList<Sala> salas = new ArrayList<>();
         ArrayList<Sala> salaPadrao = new ArrayList<>();
-        Sala s = new Sala(1,20,"Sala 1","2D","(16)3351-1010",true);
+        Sala s = new Sala(1,20,"Sala 1","2D","1633511010",true);
 
         s.incluirSala(salas,s);
         salaPadrao.add(s);
@@ -172,7 +174,7 @@ class SalaTest {
     @Order(11)
     void alterarSala() {
         ArrayList<Sala> salaPadrao = new ArrayList<>();
-        Sala newSala= new Sala(1,99,"Sala 1","3D","(16)3333-3333",false);
+        Sala newSala= new Sala(1,99,"Sala 1","3D","1633333333",false);
 
         listaSalas = s.carregaSalas(listaSalas);
         s.alterarSala(listaSalas,newSala);

@@ -154,9 +154,9 @@ public class Main {
                                 nome = scanner.nextLine();
                                 System.out.println("\nInforme o tipo de exibição da sala:");
                                 tipo_de_exibicao = scanner.nextLine();
-                                System.out.println("\nInforme o telefone da sala:");
+                                System.out.println("\nInforme o telefone da sala (apenas números e com o DDD):");
                                 telefone_sala = scanner.nextLine();
-                                System.out.println("\nInforme se existe acessibilidade na sala:");
+                                System.out.println("\nInforme se existe acessibilidade na sala (true/false):");
                                 acessivel = Boolean.parseBoolean(scanner.nextLine());
                                 Sala novaSala = new Sala(codigo, capacidade,nome,tipo_de_exibicao,telefone_sala,acessivel);
                                 salas = sala.incluirSala(salas, novaSala);
@@ -177,9 +177,9 @@ public class Main {
                                 s.setNome(scanner.nextLine());
                                 System.out.println("\nInforme o tipo de exibição da sala:");
                                 s.setTipo_de_exibicao(scanner.nextLine());
-                                System.out.println("\nInforme o telefone da sala:");
+                                System.out.println("\nInforme o telefone da sala (apenas números e com o DDD):");
                                 s.setTelefone_sala(scanner.nextLine());
-                                System.out.println("\nInforme se existe acessibilidade na sala:");
+                                System.out.println("\nInforme se existe acessibilidade na sala (true/false):");
                                 s.setAcessivel(Boolean.parseBoolean(scanner.nextLine()));
                                 salas = sala.alterarSala(salas, s);
                             } else {

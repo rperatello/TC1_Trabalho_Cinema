@@ -13,12 +13,12 @@ public class Sala {
     }
 
     public Sala(int codigo, int capacidade, String nome, String tipo_de_exibicao, String telefone_sala, boolean acessivel) {
-        this.codigo = codigo;
-        this.capacidade = capacidade;
-        this.nome = nome;
-        this.tipo_de_exibicao = tipo_de_exibicao;
-        this.telefone_sala = telefone_sala;
-        this.acessivel = acessivel;
+        this.setCodigo(codigo);
+        this.setCapacidade(capacidade);
+        this.setNome(nome);
+        this.setTipo_de_exibicao(tipo_de_exibicao);
+        this.setTelefone_sala(telefone_sala);
+        this.setAcessivel(acessivel);
     }
 
     public int getCodigo() {
@@ -53,13 +53,17 @@ public class Sala {
         this.tipo_de_exibicao = tipo_de_exibicao;
     }
 
-    public String getTelefone_sala() {
-        return telefone_sala;
-    }
+    public String getTelefone_sala() { return telefone_sala; }
 
     public void setTelefone_sala(String telefone_sala) {
-        this.telefone_sala = telefone_sala;
-    }
+        if(telefone_sala.length() == 10){
+            telefone_sala = "(" + telefone_sala.substring(0,2) + ")" +
+                    telefone_sala.substring(2,6) + "-" + telefone_sala.substring(6,10);
+        } else if (telefone_sala.length() == 11){
+            telefone_sala = "(" + telefone_sala.substring(0,2) + ")" +
+                    telefone_sala.substring(2,7) + "-" + telefone_sala.substring(7,11);
+        } else { telefone_sala = ""; }
+        this.telefone_sala = telefone_sala; }
 
     public boolean isAcessivel() {
         return acessivel;
@@ -84,13 +88,13 @@ public class Sala {
     public ArrayList<Sala> carregaSalas(ArrayList<Sala> salas){
         Sala aux = new Sala();
 
-        Sala s1 = new Sala(1,20,"Sala 1","2D","(16)3351-1010",true);
-        Sala s2 = new Sala(2,25,"Sala 2","2D","(16)3351-1020",true);
-        Sala s3 = new Sala(3,20,"Sala 3","2D","(16)3351-1030", false);
-        Sala s4 = new Sala(4,30,"Sala 4","3D","(16)3351-1040",true);
-        Sala s5 = new Sala(5,15,"Sala 5","3D","(16)3351-1050", false);
-        Sala s6 = new Sala(6,22,"Sala 6","2D","(16)3351-1060", true);
-        Sala s7 = new Sala(7,25,"Sala 7","3D","(16)3351-1070", false);
+        Sala s1 = new Sala(1,20,"Sala 1","2D","1633511010",true);
+        Sala s2 = new Sala(2,25,"Sala 2","2D","1633511020",true);
+        Sala s3 = new Sala(3,20,"Sala 3","2D","1633511030", false);
+        Sala s4 = new Sala(4,30,"Sala 4","3D","1633511040",true);
+        Sala s5 = new Sala(5,15,"Sala 5","3D","1633511050", false);
+        Sala s6 = new Sala(6,22,"Sala 6","2D","1633511060", true);
+        Sala s7 = new Sala(7,25,"Sala 7","3D","1633511070", false);
 
         salas = aux.incluirSala(salas,s1);
         salas = aux.incluirSala(salas,s2);
@@ -141,7 +145,8 @@ public class Sala {
                 s.setCapacidade(sala.getCapacidade());
                 s.setNome(sala.getNome());
                 s.setTipo_de_exibicao(sala.getTipo_de_exibicao());
-                s.setTelefone_sala(sala.getTelefone_sala());
+                String tel = sala.getTelefone_sala().replace("(","").replace(")","").replace("-","");
+                s.setTelefone_sala(tel);
                 s.setAcessivel(sala.isAcessivel());
                 return salas;
             }
